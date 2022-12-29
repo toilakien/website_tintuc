@@ -1,9 +1,22 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import image from "../Layouts/ImportImage";
 import MyVideoComponent from "../Layouts/myvideo";
 import WrapperContent from "../Layouts/WrapperContent";
+import { formatLinkImage } from "../utils/fomatLinkImage";
 
 const Chinhsachlamviec = () => {
+  const navigate = useNavigate();
+  const handleClick = (e: any) => {
+    navigate("/TinTucDetails", {
+      state: {
+        values: {
+          title: e?.title,
+          anh: formatLinkImage(e?.anh),
+        },
+      },
+    });
+  };
   return (
     <WrapperContent>
       <div className="display-flex">
@@ -13,7 +26,7 @@ const Chinhsachlamviec = () => {
               <img src={e.anh} alt="" />
               <br />
 
-              <a href="/TinTucDetails">{e.title}</a>
+              <a onClick={() => handleClick(e)}>{e.title}</a>
             </div>
           );
         })}

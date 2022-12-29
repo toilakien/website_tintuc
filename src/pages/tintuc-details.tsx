@@ -1,18 +1,22 @@
-import { display } from "@mui/system";
-import React from "react";
+import { Avatar } from "@mui/material";
+import { url } from "inspector";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import image from "../Layouts/ImportImage";
-
 const TinTucDetails = () => {
+  const location = useLocation();
+  const data = location.state.values;
+  console.log(data);
+  console.log(data?.anh.toString());
+
   return (
     <div style={{ padding: "20px" }}>
       <h1>Details</h1>
       <div className="display-flex" style={{ alignItems: "flex-start" }}>
         <div style={{ width: "70%" }}>
-          <h2>
-            Tin tức 24h: Không khí lạnh cực mạnh tràn về, vùng núi xuất hiện
-            băng giá
-          </h2>
-          <img src="https://image-us.24h.com.vn/upload/3-2020/images/2020-08-15/Tin-tuc-24h-qua-Mot-benh-nhan-COVID-19-bi-bo-lot-sau-nhieu-lan-di-kham-o-Hai-Duong-va-Ha-Noi-a4-1597496230-142-width960height590.jpg"></img>
+          <h2>{data?.title}</h2>
+
+          <img src={data?.anh.toString()} />
           <p>
             Thi hành bản án hình sự đối với Lê Tùng Vân vụ Tịnh thất Bồng Lai;
             Vụ 3,2 triệu sách giáo khoa giả: Tiếp tục truy tố ông Trần Hùng nhận
@@ -38,6 +42,7 @@ const TinTucDetails = () => {
             })}
           </div>
         </div>
+
         <div>
           {image.map((e, index) => {
             return (
